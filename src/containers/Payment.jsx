@@ -24,14 +24,12 @@ const Payment = ({ history }) => {
   // const totalPrice = sumTotal(cart);
 
   const handlePaymentSuccess = (data) => {
-    console.log(data);
     if (data.payerID !== null) {
       const newOrder = {
         buyer: buyer,
         product: cart,
         payment: data,
       };
-      console.log(this);
       addNewOrder(newOrder);
       history.push("/checkout/success");
     }
@@ -50,14 +48,6 @@ const Payment = ({ history }) => {
           </div>
         ))}
         <div className="Payment-button">
-          {/* <PaypalButton
-            paypalOptions={paypalOptions}
-            buttonStyles={buttonStyles}
-            amount={"0.01"}
-            onSuccess={(data) => handlePaymentSuccess(data)}
-            onError={(error) => console.log(error)}
-            onCancel={(data) => console.log(data)}
-          /> */}
           <PaypalBtn
             amount={sumTotal(cart)}
             currency={"USD"}

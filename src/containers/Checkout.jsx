@@ -45,8 +45,6 @@ const Checkout = () => {
             </button>
           </div>
         ))}
-        {/* <h4>Item name</h4>
-            <span>$10</span> */}
       </div>
       <div className="Checkout-sidebar">
         <h3>{`Precio total: $ ${sumTotal(cart)}`}</h3>
