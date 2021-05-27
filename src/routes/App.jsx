@@ -11,22 +11,52 @@ import NotFound from "../containers/NotFound";
 import Layout from "../components/Layout";
 import AppContext from "../context/AppContext";
 import useInitialState from "../hooks/useInitialState";
+import { createMuiTheme, ThemeProvider } from "@material-ui/core";
+
+const theme = createMuiTheme({
+  overrides: {
+    MuiButton: {
+      root: {
+        color: "inherit",
+      },
+    },
+    MuiIconButton: {
+      root: {
+        color: "inherit",
+      },
+    },
+  },
+  palette: {
+    primary: {
+      main: "#14396a",
+    },
+    secondary: {
+      main: "#ff9100",
+    },
+  },
+});
 
 const App = () => {
   const initialState = useInitialState();
   return (
     <AppContext.Provider value={initialState}>
       <BrowserRouter>
-        <Layout>
-          <Switch>
-            <Route exact path="/" component={Home} />
-            <Route exact path="/checkout" component={Checkout} />
-            <Route exact path="/checkout/information" component={Information} />
-            <Route exact path="/checkout/payment" component={Payment} />
-            <Route exact path="/checkout/success" component={Success} />
-            <Route component={NotFound} />
-          </Switch>
-        </Layout>
+        <ThemeProvider theme={theme}>
+          <Layout>
+            <Switch>
+              <Route exact path="/" component={Home} />
+              <Route exact path="/checkout" component={Checkout} />
+              <Route
+                exact
+                path="/checkout/information"
+                component={Information}
+              />
+              <Route exact path="/checkout/payment" component={Payment} />
+              <Route exact path="/checkout/success" component={Success} />
+              <Route component={NotFound} />
+            </Switch>
+          </Layout>
+        </ThemeProvider>
       </BrowserRouter>
     </AppContext.Provider>
   );

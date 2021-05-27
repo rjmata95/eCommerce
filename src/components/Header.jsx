@@ -1,23 +1,34 @@
 import React, { useContext } from "react";
+import usePageTitle from "../hooks/usePageTitle";
 import { Link } from "react-router-dom";
 import "../styles/components/Header.css";
 import AppContext from "../context/AppContext";
+import NavBar from "../components/NavBar";
 
 const Header = () => {
   const { state } = useContext(AppContext);
   const { cart } = state;
+  const title = usePageTitle();
   return (
-    <div className="Header">
-      <h1 className="Header-title">
-        <Link to="/">Platzi Conf Merch</Link>
-      </h1>
-      <div className="Header-checkout">
-        <Link to="/checkout">
-          <i className="fas fa-shopping-basket" />
-        </Link>
-        {cart.length > 0 && <div className="Header-alert">{cart.length}</div>}
-      </div>
-    </div>
+    <>
+      <NavBar
+        logo={<Link to="/">Platzi Conf Merch</Link>}
+        title={title}
+        btn={
+          <>
+            <Link to="/checkout">
+              <i className="fas fa-shopping-basket" />
+            </Link>
+            {cart.length > 0 && <span>{cart.length}</span>}
+          </>
+        }
+        menuItems={[
+          <Link to="/checkout">Checkout</Link>,
+          <Link to="/checkout/information">Information</Link>,
+          <Link to="/checkout/payment">Payment</Link>,
+        ]}
+      />
+    </>
   );
 };
 
