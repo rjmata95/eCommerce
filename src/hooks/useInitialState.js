@@ -4,6 +4,18 @@ import initialState from "../initialState";
 const useInitialState = () => {
   const [state, setState] = useState(initialState);
 
+  const toggleLoading = () => {
+    setState({
+      ...state,
+      loading: !state.loading,
+    });
+  };
+  const addProducts = (payload) => {
+    setState({
+      ...state,
+      products: [...state.products, payload],
+    });
+  };
   const addToCart = (payload) => {
     setState({
       ...state,
@@ -33,6 +45,8 @@ const useInitialState = () => {
   };
 
   return {
+    toggleLoading,
+    addProducts,
     addToCart,
     removeFromCart,
     addToBuyer,

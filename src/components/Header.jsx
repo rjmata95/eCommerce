@@ -1,7 +1,6 @@
 import React, { useContext } from "react";
 import usePageTitle from "../hooks/usePageTitle";
 import { Link } from "react-router-dom";
-import "../styles/components/Header.css";
 import AppContext from "../context/AppContext";
 import NavBar from "../components/NavBar";
 

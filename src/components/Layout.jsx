@@ -1,18 +1,35 @@
 import React from "react";
 import Header from "./Header";
 import Footer from "./Footer";
-import AppBar from "@material-ui/core/AppBar";
-import "../styles/components/Layout.css";
-import { Container } from "@material-ui/core";
+import { Box, Container, CssBaseline, makeStyles } from "@material-ui/core";
+
+const useStyles = makeStyles((theme) => ({
+  root: {
+    display: "flex",
+    flexDirection: "column",
+    minHeight: "100%",
+  },
+  content: {
+    flex: "1 0 auto",
+  },
+  footer: {
+    // marginTop: "auto",
+    flexShrink: 0,
+  },
+}));
 
 const Layout = ({ children }) => {
+  const classes = useStyles();
   return (
     <>
-      <Header />
-      <Container maxWidth="lg">
-        {children}
-        <Footer />
-      </Container>
+      {/* <CssBaseline /> */}
+      <Box className={classes.root}>
+        <Header />
+        <Container className={classes.content} maxWidth="lg">
+          {children}
+        </Container>
+        <Footer className={classes.footer} />
+      </Box>
     </>
   );
 };

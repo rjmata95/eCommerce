@@ -1,4 +1,18 @@
+.Background__Footer {
+  background-color: #436087;
+  color: #fff;
+  font-family: "Roboto", sans-serif;
+  font-weight: 500;
+  height: 10vh;
+  width: 100%;
+  padding-top: 1rem;
+  margin-top: 2rem;
+}
 .Footer {
   display: flex;
   justify-content: space-between;
+}
+
+.Footer > ul {
+  list-style: none;
 }

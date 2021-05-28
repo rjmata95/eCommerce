@@ -7,6 +7,8 @@ import {
   Menu,
   MenuItem,
   Typography,
+  useTheme,
+  useMediaQuery,
 } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
 import MenuIcon from "@material-ui/icons/Menu";
@@ -14,14 +16,12 @@ import MenuIcon from "@material-ui/icons/Menu";
 const useStyles = makeStyles((theme) => ({
   title: {
     margin: "0 auto",
-    // position: "absolute",
-    // left: "50vw",
   },
-  //   navBar: {
-  //     color: "#ffff",
-  //   },
   navBar__offset: {
-    marginBottom: "10vh",
+    marginBottom: "12vh",
+    [theme.breakpoints.up("sm")]: {
+      marginBottom: "8vh",
+    },
   },
   toolBar: {
     // justifyContent: "space-evenly",
@@ -31,6 +31,8 @@ const useStyles = makeStyles((theme) => ({
 const NavBar = ({ logo, title, btn, menuItems }) => {
   const [anchorEl, setAnchorEl] = useState(null);
   const classes = useStyles();
+  const theme = useTheme();
+  const isMobile = useMediaQuery(theme.breakpoints.down("xs"));
 
   const handleMenu = (event) => {
     setAnchorEl(event.currentTarget);

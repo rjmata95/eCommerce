@@ -25,6 +25,16 @@ const theme = createMuiTheme({
         color: "inherit",
       },
     },
+    MuiTypography: {
+      root: {
+        color: "inherit",
+      },
+    },
+    MuiContainer: {
+      root: {
+        minHeight: "100%",
+      },
+    },
   },
   palette: {
     primary: {
