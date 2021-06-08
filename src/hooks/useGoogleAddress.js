@@ -7,8 +7,18 @@ const useGoogleAddress = (address) => {
   const API = `https://maps.googleapis.com/maps/api/geocode/json?address=${address}&key=${API_KEY}`;
 
   useEffect(async () => {
-    const response = await axios(API);
-    setMap(response.data.results[0].geometry.location);
+    try {
+      if (!address) throw "Addresss not defined";
+      const response = await axios(API);
+      setMap(response.data.results[0].geometry.location);
+    } catch (error) {
+      console.log(`${error}, Guatire will be default`);
+      let Guatire = {
+        lat: 10.476296,
+        lng: -66.554415,
+      };
+      setMap(Guatire);
+    }
   }, []);
   return map;
 };

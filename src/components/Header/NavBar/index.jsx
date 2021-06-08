@@ -12,6 +12,7 @@ import {
 } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
 import MenuIcon from "@material-ui/icons/Menu";
+import CustomDrawer from "./Drawer/CustomDrawer";
 
 const useStyles = makeStyles((theme) => ({
   title: {
@@ -20,27 +21,31 @@ const useStyles = makeStyles((theme) => ({
   navBar__offset: {
     marginBottom: "12vh",
     [theme.breakpoints.up("sm")]: {
-      marginBottom: "8vh",
+      marginBottom: "10vh",
     },
   },
   toolBar: {
     // justifyContent: "space-evenly",
+    // alignItems: "center",
+  },
+  btn: {
+    // marginLeft: "auto",
   },
 }));
 
-const NavBar = ({ logo, title, btn, menuItems }) => {
+const NavBar = ({ logo, title, btn, menuItems, searchBar }) => {
   const [anchorEl, setAnchorEl] = useState(null);
   const classes = useStyles();
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down("xs"));
 
-  const handleMenu = (event) => {
-    setAnchorEl(event.currentTarget);
-  };
-  const handleClickMenu = () => {
-    setAnchorEl(null);
-  };
-  const open = Boolean(anchorEl);
+  // const handleMenu = (event) => {
+  //   setAnchorEl(event.currentTarget);
+  // };
+  // const handleClickMenu = () => {
+  //   setAnchorEl(null);
+  // };
+  // const open = Boolean(anchorEl);
   const handleClickTitle = () => {
     window.scrollTo(0, 0);
   };
@@ -49,7 +54,8 @@ const NavBar = ({ logo, title, btn, menuItems }) => {
     <>
       <AppBar color="primary">
         <Toolbar className={classes.toolBar}>
-          <IconButton onClick={handleMenu}>
+          <CustomDrawer menuItems={menuItems} />
+          {/* <IconButton onClick={handleMenu}>
             <MenuIcon />
           </IconButton>
           <Menu
@@ -70,13 +76,17 @@ const NavBar = ({ logo, title, btn, menuItems }) => {
             {menuItems.map((item) => (
               <MenuItem onClick={handleClickMenu}>{item}</MenuItem>
             ))}
-          </Menu>
+          </Menu> */}
           <IconButton>{logo}</IconButton>
-          <IconButton onClick={handleClickTitle} className={classes.title}>
-            <Typography variant="h6">{title}</Typography>
-          </IconButton>
-
-          <Button>{btn}</Button>
+          {!isMobile && (
+            <IconButton onClick={handleClickTitle} className={classes.title}>
+              <Typography variant="h6">{title}</Typography>
+            </IconButton>
+          )}
+          <>
+            {searchBar}
+            <Button className={classes.btn}>{btn}</Button>
+          </>
         </Toolbar>
       </AppBar>
       <div className={classes.navBar__offset} />

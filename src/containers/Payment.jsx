@@ -2,8 +2,16 @@ import React, { useContext } from "react";
 import AppContext from "../context/AppContext";
 import { sumTotal } from "../utils/sumTotal";
 import PaypalBtn from "../components/PaypalBtn";
-import "../styles/components/Payment.css";
-
+import {
+  Avatar,
+  Grid,
+  List,
+  ListItem,
+  ListItemAvatar,
+  ListItemText,
+  Paper,
+  Typography,
+} from "@material-ui/core";
 const Payment = ({ history }) => {
   const { state, addNewOrder } = useContext(AppContext);
   const { cart, buyer } = state;
@@ -36,27 +44,36 @@ const Payment = ({ history }) => {
   };
 
   return (
-    <div className="Payment">
-      <div className="Payment-content">
-        <h3>Resumen del pedido:</h3>
+    <Grid container justify="space-between" alignItems="center" spacing={4}>
+      <Grid item container md={5} xs={12}>
+        <Grid item xs={12}>
+          <Typography gutterBottom variant="h4">
+            Resumen del pedido:
+          </Typography>
+        </Grid>
         {cart.map((product) => (
-          <div className="Payment-item" key={product.id}>
-            <div className="Payment-element">
-              <h4>{product.title}</h4>
-              <span>${product.price}</span>
-            </div>
-          </div>
+          <Grid xs={12} item className="Payment-item" key={product.id}>
+            <List>
+              <ListItem divider>
+                <ListItemAvatar>
+                  <Avatar alt={product.title} src={product.image} />
+                </ListItemAvatar>
+                <ListItemText primary={product.title} />
+                <Typography variant="subtitle1">${product.price}</Typography>
+              </ListItem>
+            </List>
+          </Grid>
         ))}
-        <div className="Payment-button">
-          <PaypalBtn
-            amount={sumTotal(cart)}
-            currency={"USD"}
-            style={buttonStyles}
-            onSuccess={handlePaymentSuccess}
-          />
-        </div>
-      </div>
-    </div>
+      </Grid>
+      <Grid item md={5} xs={12}>
+        <PaypalBtn
+          amount={sumTotal(cart)}
+          currency={"USD"}
+          style={buttonStyles}
+          onSuccess={handlePaymentSuccess}
+        />
+      </Grid>
+    </Grid>
   );
 };
 

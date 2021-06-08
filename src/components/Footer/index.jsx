@@ -23,7 +23,9 @@ const Footer = () => {
         <Typography variant="subtitle1">
           by Raynulfo Mata. May 2021 ©
         </Typography>
-        <Typography variant="subtitle1">DB Provided by RAWG</Typography>
+        <Typography variant="subtitle1">
+          How do you take your coffee?
+        </Typography>
       </Container>
     </Box>
   );

@@ -1,8 +1,16 @@
 import React, { useContext } from "react";
 import Product from "./Product";
 import AppContext from "../context/AppContext";
-// import "../styles/components/Products.css";
-import { Grid, makeStyles } from "@material-ui/core";
+import { Grid, makeStyles, Slide } from "@material-ui/core";
+import {
+  Dialog,
+  Zoom,
+  DialogTitle,
+  DialogContent,
+  DialogContentText,
+  DialogActions,
+  Button,
+} from "@material-ui/core";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -10,42 +18,31 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const Products = () => {
+const Products = ({ products }) => {
   const { state, addToCart } = useContext(AppContext);
-  const { products } = state;
+
   const classes = useStyles();
   const handleAddToCart = (product) => {
     addToCart(product);
   };
   return (
     <Grid container spacing={2}>
+      {/* {console.log(`inside products: ${products}`)} */}
       {products.map((product) => (
-        <Grid item xs={12} sm={6} md={4} lg={3} className={classes.root}>
-          <Product
-            key={product.idMeal}
-            product={product}
-            handleAddToCart={handleAddToCart}
-          />
-        </Grid>
-      ))}
-      {/* {products.map((product) => (
-        <Grid item xs={12} sm={6} md={4} lg={3} className={classes.root}>
-          <Product
+        <>
+          <Grid
+            item
             key={product.id}
-            product={product}
-            handleAddToCart={handleAddToCart}
-          />
-        </Grid>
+            xs={12}
+            sm={6}
+            md={4}
+            lg={3}
+            className={classes.root}
+          >
+            <Product product={product} handleAddToCart={handleAddToCart} />
+          </Grid>
+        </>
       ))}
-      {products.map((product) => (
-        <Grid item xs={12} sm={6} md={4} lg={3} className={classes.root}>
-          <Product
-            key={product.id}
-            product={product}
-            handleAddToCart={handleAddToCart}
-          />
-        </Grid>
-      ))} */}
     </Grid>
   );
 };

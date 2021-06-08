@@ -18,6 +18,7 @@ const theme = createMuiTheme({
     MuiButton: {
       root: {
         color: "inherit",
+        // margin: "1rem .5rem",
       },
     },
     MuiIconButton: {

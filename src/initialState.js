@@ -1,5 +1,5 @@
 export default {
-  loading: true,
+  loading: false,
   cart: [],
   buyer: {},
   orders: [],

@@ -1,5 +1,6 @@
 import React from "react";
-import { GoogleMap, LoadScript, Marker } from "@react-google-maps/api";
+import { GoogleMap, Marker, useJsApiLoader } from "@react-google-maps/api";
+import { Typography } from "@material-ui/core";
 const Map = ({ location }) => {
   const mapStyles = {
     height: "50vh",
@@ -9,12 +10,19 @@ const Map = ({ location }) => {
     lat: location.lat,
     lng: location.lng,
   };
-  return (
-    <LoadScript googleMapsApiKey="AIzaSyDC-esaKsyPDBDFqsXCTqpuvHK32KDpghw">
-      <GoogleMap mapContainerStyle={mapStyles} zoom={9} center={defaultCenter}>
-        <Marker position={defaultCenter} />
-      </GoogleMap>
-    </LoadScript>
+  const { isLoaded } = useJsApiLoader({
+    id: "google-map-script",
+    googleMapsApiKey: "AIzaSyDC-esaKsyPDBDFqsXCTqpuvHK32KDpghw",
+  });
+
+  return isLoaded ? (
+    <GoogleMap mapContainerStyle={mapStyles} zoom={9} center={defaultCenter}>
+      <Marker position={defaultCenter} />
+    </GoogleMap>
+  ) : (
+    <>
+      <Typography>Error with maps</Typography>
+    </>
   );
 };
 

@@ -1,6 +1,6 @@
 import React from "react";
-import Header from "./Header";
-import Footer from "./Footer";
+import Header from "../Header";
+import Footer from "../Footer";
 import { Box, Container, CssBaseline, makeStyles } from "@material-ui/core";
 
 const useStyles = makeStyles((theme) => ({

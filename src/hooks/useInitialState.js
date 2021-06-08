@@ -5,16 +5,33 @@ const useInitialState = () => {
   const [state, setState] = useState(initialState);
 
   const toggleLoading = () => {
-    setState({
+    setState((state) => ({
       ...state,
       loading: !state.loading,
-    });
+    }));
+  };
+
+  const setProducts = (payload) => {
+    Array.isArray(payload)
+      ? setState({
+          ...state,
+          products: [...payload],
+        })
+      : setState({
+          ...state,
+          products: [payload],
+        });
   };
   const addProducts = (payload) => {
-    setState({
-      ...state,
-      products: [...state.products, payload],
-    });
+    Array.isArray(payload)
+      ? setState({
+          ...state,
+          products: [...state.products, ...payload],
+        })
+      : setState({
+          ...state,
+          products: [...state.products, payload],
+        });
   };
   const addToCart = (payload) => {
     setState({
@@ -52,6 +69,7 @@ const useInitialState = () => {
     addToBuyer,
     state,
     addNewOrder,
+    setProducts,
   };
 };
 
