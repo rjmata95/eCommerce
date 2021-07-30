@@ -3,8 +3,8 @@ import axios from "axios";
 
 const useGoogleAddress = (address) => {
   const [map, setMap] = useState({});
-  const API_KEY = "AIzaSyDC-esaKsyPDBDFqsXCTqpuvHK32KDpghw";
-  const API = `https://maps.googleapis.com/maps/api/geocode/json?address=${address}&key=${API_KEY}`;
+  const { GOOGLE_MAPS_API_KEY } = process.env;
+  const API = `https://maps.googleapis.com/maps/api/geocode/json?address=${address}&key=${GOOGLE_MAPS_API_KEY}`;
 
   useEffect(async () => {
     try {
